@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.font-heading {
+  font-family: "Poppins", sans-serif;
+}
+
+.font-body {
+  font-family: "Inter", sans-serif;
+}
+
+.font-footer {
+  font-family: "Roboto Mono", monospace;
+}
