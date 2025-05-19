@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { mockSearchResults } from "../../data/mockData";
 
 const initialState = {
   results: [],
@@ -7,18 +6,17 @@ const initialState = {
   error: null, // | "string"
 };
 
-export const mockSearchGames = createAsyncThunk("search/fetch", () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const shouldFail = Math.random() < 0.1; // 10% chance of failure
-      if (shouldFail) {
-        reject(new Error("Mock API failed"));
-      } else {
-        resolve(mockSearchResults);
-      }
-    }, 3000);
-  });
-});
+export const fetchGamesByTitle = createAsyncThunk(
+  "search/fetch",
+  async (gameName) => {
+    const res = await fetch(
+      `https://www.cheapshark.com/api/1.0/games?title=${gameName}`
+    );
+    const data = await res.json();
+
+    return data;
+  }
+);
 
 const searchSlice = createSlice({
   name: "search",
@@ -26,14 +24,14 @@ const searchSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(mockSearchGames.pending, (state) => {
+      .addCase(fetchGamesByTitle.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(mockSearchGames.rejected, (state, action) => {
+      .addCase(fetchGamesByTitle.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(mockSearchGames.fulfilled, (state, action) => {
+      .addCase(fetchGamesByTitle.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.results = action.payload;
       });
