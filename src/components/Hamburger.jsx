@@ -1,18 +1,10 @@
-import React, { useState } from "react";
 import "../styles/Hamburger.css";
 
-export function Hamburger({ onClick }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen((prev) => !prev);
-    onClick(); // tells parent to open/close the nav panel
-  };
-
+export function Hamburger({ isOpen, onClick }) {
   return (
     <button
       className={`menu ${isOpen ? "opened" : ""} max-[768px]:block hidden`}
-      onClick={handleClick}
+      onClick={onClick}
       aria-label="Main Menu"
       aria-expanded={isOpen}
     >
