@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar } from "./Navbar";
 import { AppRoutes } from "../routes/AppRoutes";
+import { useDispatch } from "react-redux";
+import { fetchStores } from "../features/stores/storeSlice";
 
 export function Layout() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchStores());
+  }, [dispatch]);
+
   return (
     <>
       <header className="max-w-full flex justify-between align-middle p-4 bg-gray-950">

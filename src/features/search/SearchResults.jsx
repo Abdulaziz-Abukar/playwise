@@ -15,8 +15,15 @@ export function SearchResults({ results }) {
         alt={game.external}
         className="w-32 h-20 object-contain mb-2 rounded"
       />
-      <h3 className="text-lg font-semibold text-center">{game.external}</h3>
-      <p className="text-green-600 font-bold">${game.cheapest}</p>
+      <h3 className="text-lg font-semibold text-center truncate w-full">
+        {game.external}
+      </h3>
+      <p className="text-green-600 font-bold text-sm mt-1">
+        Lowest Price: ${game.cheapest}
+      </p>
+      <p className="text-gray-500 text-xs mt-1 text-center">
+        Click for details
+      </p>
     </div>
   ));
 }
