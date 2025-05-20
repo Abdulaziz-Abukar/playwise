@@ -33,7 +33,7 @@ export function GameDetails() {
           <strong>Cheapest Ever:</strong> ${game.cheapestPriceEver.price}
         </p>
         <p>
-          <strong>Date of Cheapest Price:</strong>{" "}
+          <strong>Cheapest Price Date:</strong>{" "}
           {new Date(game.cheapestPriceEver.date * 1000).toLocaleDateString()}
         </p>
       </div>
