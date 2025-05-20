@@ -10,14 +10,14 @@ export function WishlistList() {
 
   if (wishlist.length === 0) {
     return (
-      <p className="text-center text-gray-400 text-lg mt-10">
+      <p className="text-center text-gray-400 text-lg mt-10 animate-fade-in-up">
         🫥 Your wishlist is empty. Go add some games!
       </p>
     );
   }
 
   return (
-    <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+    <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 animate-fade-in-up">
       {wishlist.map((game) => (
         <div
           key={game.id}
