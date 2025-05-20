@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGameById, clearGame } from "../features/games/gameSlice";
 
 export function GameDetails() {
   const { gameID } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data: game, status, error } = useSelector((state) => state.game);
   const storeMap = useSelector((state) => state.stores.storeMap);
 
@@ -22,6 +23,13 @@ export function GameDetails() {
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-4 text-blue-600 hover:underline text-md hover:cursor-pointer"
+      >
+        ← Go Back
+      </button>
+
       <h2 className="text-3xl font-bold mb-4">{game.info.title}</h2>
       <img
         src={game.info.thumb}

@@ -12,7 +12,7 @@ export function Deals({ results }) {
         return (
           <div
             key={gameDeal.gameID}
-            className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center hover:shadow-lg transition duration-200"
+            className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center hover:shadow-lg transition duration-200 animate-fade-in-up"
           >
             <img
               src={gameDeal.thumb}
