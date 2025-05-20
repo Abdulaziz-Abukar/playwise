@@ -1,23 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { mockDeals } from "../../data/mockDealData";
 
 const initialState = {
-  results: [],
+  dealsList: [],
   status: "idle", // "loading" | "succeeded", "failed"
   error: null, // | "string"
 };
 
-export const mockFetchDeals = createAsyncThunk("deals/fetch", () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const shouldFail = Math.random() < 0.1; // 10% chance of failure
-      if (shouldFail) {
-        reject(new Error("Mock API failed"));
-      } else {
-        resolve(mockDeals);
-      }
-    }, 3000);
-  });
+export const fetchDeals = createAsyncThunk("deals/fetch", async () => {
+  const res = await fetch("https://www.cheapshark.com/api/1.0/deals");
+  const data = await res.json();
+  return data;
 });
 
 const dealsSlice = createSlice({
@@ -26,16 +18,16 @@ const dealsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(mockFetchDeals.pending, (state) => {
+      .addCase(fetchDeals.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(mockFetchDeals.rejected, (state, action) => {
+      .addCase(fetchDeals.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(mockFetchDeals.fulfilled, (state, action) => {
+      .addCase(fetchDeals.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.results = action.payload;
+        state.dealsList = action.payload;
       });
   },
 });
