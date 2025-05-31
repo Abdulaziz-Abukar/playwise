@@ -10,7 +10,7 @@ import "./index.css";
 const entryPoint = document.getElementById("root");
 ReactDOM.createRoot(entryPoint).render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/playwise">
       <App />
     </BrowserRouter>
   </Provider>
