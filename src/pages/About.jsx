@@ -54,7 +54,7 @@ export function About() {
           </a>
 
           <a
-            href="https://abdulaziz-abukar.github.io/"
+            href="https://dev-abdulaziz-abukars-projects.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition"
